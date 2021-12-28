@@ -8,8 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import operator
 
-api_key = pd.read_csv('alpaca_keys.csv')['Secret Key'][0]
-api_secret = pd.read_csv('alpaca_keys.csv')['Secret Key'][1]
+api_key = pd.read_csv('secret_key.csv')['Secret Key'][0]
+api_secret = pd.read_csv('secret_key.csv')['Secret Key'][1]
 base_url = 'https://paper-api.alpaca.markets'
 
 # instantiate REST API
@@ -82,7 +82,7 @@ if trading_strategy == 1:
         submit_my_order(list(sorted_dict_final.keys())[i], quantity[i], 'buy', 'market', 'gtc')
         
 if trading_strategy == 2:
-    ticker = input("Insert 1 ticker to day trade: ")
+    ticker = input("Insert 1 VALID USD ticker to day trade: ")
     quantity = input("Insert quantity of said ticker: ")
     flag = True
     while True:
@@ -90,22 +90,22 @@ if trading_strategy == 2:
         pct_change = pd.DataFrame(data['Close'].pct_change() * 100)
         pct_change.columns = ['Percentage Change in Price']
         if flag:
-            if 0 < pct_change['Percentage Change in Price'][-1] <= 0.2:
+            if 0.05 < pct_change['Percentage Change in Price'][-1] <= 0.2:
                 submit_my_order(ticker, quantity, 'buy', 'market', 'gtc')
-                print(ticker + " bought at $ " + str(yf.download(tickers=ticker, period='1d', interval='1m')['Close'][-1]))
+                print(ticker + " bought at $ " + str(si.get_live_price(ticker)))
                 flag = False
         try: var = api.get_position(ticker)
         except: var = "No position"   
         
         if var != "No position":
-            if pct_change['Percentage Change in Price'][-1] < -0.1 or pct_change['Percentage Change in Price'][-1] > 0.2:
+            if pct_change['Percentage Change in Price'][-1] < -0.1 or pct_change['Percentage Change in Price'][-1] > 0.21:
                 submit_my_order(ticker, quantity, 'sell', 'market', 'gtc')
-                print(ticker + " sold at $ " + str(yf.download(tickers=ticker, period='1d', interval='1m')['Close'][-1]))
+                print(ticker + " sold at $ " + str(si.get_live_price(ticker)))
                 print("Please refer to Alpaca dashboard for accurate buy and sell prices")
                 break
                 
-            if -0.1 < pct_change['Percentage Change in Price'][-1] < 0:
+            if -0.05 < pct_change['Percentage Change in Price'][-1] < 0:
                 submit_my_order(ticker, quantity, 'sell', 'market', 'gtc')
-                print(ticker + " sold at $ " + str(yf.download(tickers=ticker, period='1d', interval='1m')['Close'][-1]))
+                print(ticker + " sold at $ " + str(si.get_live_price(ticker)))
                 break
-        time.sleep(5)    
+        time.sleep(1) 
