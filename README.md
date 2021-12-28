@@ -7,8 +7,8 @@ Given the imports in the code, you must pip install alpaca-trade-api, pandas, yf
 When you create an Alpaca trading account, you must generate your unique API key and secret key and paste them (in that specific order) replacing the text in the given CSV file (alpaca_keys.csv). 
 If you run 
 
-'''
+
 api = tradeapi.REST(api_key, api_secret, base_url, api_version='v2')
-account = api.get_account()
-'''
+and account = api.get_account()
+
 without error, the setup is now complete (assuming the previous steps have been done). 
