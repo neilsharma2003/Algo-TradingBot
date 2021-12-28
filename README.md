@@ -2,6 +2,7 @@
 Trading bot coded in Python and uses Alpaca trading API, yfinance and other libraries included in the import section of the code. 
 
 **Setup**
+
 Given the imports in the code, you must pip install alpaca-trade-api, pandas, yfinance, numpy and matplotlib if you have not already. The base URL is set to execute trades through Alpaca's paper trading. It is recommended you test this code with your desired inputs before proceeding to live trading with actual money. All trades will be executed in USD. 
 
 When you create an Alpaca trading account, you must generate your unique API key and secret key and paste them (in that specific order) replacing the text in the given CSV file (alpaca_keys.csv). 
