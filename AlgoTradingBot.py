@@ -8,8 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import operator
 
-api_key = pd.read_csv('secret_key.csv')['Secret Key'][0]
-api_secret = pd.read_csv('secret_key.csv')['Secret Key'][1]
+api_key = pd.read_csv('alpaca_keys.csv')['Secret Key'][0]
+api_secret = pd.read_csv('alpaca_keys.csv')['Secret Key'][1]
 base_url = 'https://paper-api.alpaca.markets'
 
 # instantiate REST API
