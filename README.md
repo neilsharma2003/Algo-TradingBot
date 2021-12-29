@@ -1,5 +1,5 @@
 # Algo-TradingBot
-Trading bot coded in Python and uses Alpaca trading API, yfinance and other libraries included in the import section of the code. 
+Trading bot written in Python and uses Alpaca trading API, yfinance and other libraries included in the import section of the code. 
 
 **Setup**
 
@@ -16,15 +16,14 @@ After the imports and the REST API/account info initialization, an order functio
 
 At this point, the user has two options:
   1) Momentum trading portfolio (meant to be held for 1 year or more) that accepts ticker inputs from the user, removes false, non-USD tickers, and tickers     
-     whose 1 year percentage return is negative. Credits to Jenny Zhang for the the loop that forms a filtered list. Then, the program will rank 1 year percentage   
-     returns (via sorting), and choose the top 20 stocks or the keep the 
-     list of tickers intact if it is less than 20.
+     whose 1 year percentage return is negative. Credits to Jenny Zhang for the the loop that forms a filtered list. Then, the program will rank 1 year     
+     percentage returns (via sorting), and choose the top 20 stocks or the keep the list of tickers intact if it is less than 20.
      
      The program then will ask the user for the amount of money they wish to invest, allocates the money to each ticker, and determines the quantity for
      each ticker. Finally, the order function is called to execute buys on each ticker at their according quantity. 
      
-  2) Day trading strategy that searches for an increase in the price and sells at a small profit. More specifically, the program will purchase the inputted ticker 
-     (at said quantity) when the price begins to increase and sells once the price declines. If the price does not increase, there is a pseudo-stop-loss order that 
-     sells the ticker. The goal of this strategy is to reduce losses and to withdraw from a position if there is high price volatility. 
+  2) Day trading strategy that searches for an increase in the price and sells at a small profit. More specifically, the program will purchase the inputted  
+     ticker (at said quantity) when the price begins to increase and sells once the price declines. If the price does not increase, there is a pseudo-stop-loss   
+     order that sells the ticker. The goal of this strategy is to reduce losses and to withdraw from a position if there is high price volatility. 
  
  It is well noting that stock prices printed in the code have delays and you should keep an eye on your Alpaca dashboard to get the most up-to-date stock information as well as withdrawing from trades if necessary. 
